@@ -4,13 +4,28 @@ var express = require('express'),
 	apiRouter = express.Router(),
 	router = express.Router();
 
-module.exports = function(app){	
+module.exports = function(app){
 
-	// angularjs catch all route
-	router.get('/*', function(req, res) {
-		res.sendFile(rootPath + 'public/index.html', { user: req.user });
-	});
+	// // angularjs catch all route
+	// router.get('/*', function(req, res) {
+	// 	res.sendFile(rootPath + 'public/index.html', { user: req.user });
+	// });
 
 	app.use('/api', apiRouter);	// haven't built any api yet
 	app.use('/', router);
+
+	//Home route
+	router.get('/', function(req, res) {
+		res.render('index');
+	});
+
+	//Admin route
+	router.get('/admin', function(req, res) {
+		res.render('admin/login');
+	});
+
+	//Admin register
+	router.get('/admin/register', function(req, res) {
+		res.render('admin/register');
+	});
 };
