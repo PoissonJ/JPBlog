@@ -1,0 +1,16 @@
+{
+  "ecmaVersion": 6,
+  "libs": [],
+  "loadEagerly": [
+    "*.js",
+    "public/*/*.js"
+  ],
+  "plugins": {
+  "complete_strings": {},
+  "node": {},
+  "angular":  {},
+  "requirejs": {},
+  "modules": {}
+  }
+
+}
