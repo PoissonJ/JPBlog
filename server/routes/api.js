@@ -60,10 +60,11 @@ router.get('/blog', function(req, res) {
   });
 });
 
-router.get('/blog/:id', function(req, res) {
+router.get('/blog/:title', function(req, res) {
   console.log('At blog find api endpoint');
-  var id = req.params.id;
-  BlogPost.findById(id, function(err, docs) {
+  var title = req.params.title;
+  title = title.split('+').join(' ');
+  BlogPost.findOne({'title': title}, function(err, docs) {
     console.log(docs);
     res.json(docs);
   });

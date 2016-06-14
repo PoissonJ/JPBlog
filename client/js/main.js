@@ -7,7 +7,7 @@ myApp.config(function ($routeProvider) {
       controller: 'homeController',
       access: {restricted: false}
     })
-    .when('/post/:id', {
+    .when('/post/:title', {
       templateUrl: '/partials/post.html',
       controller: 'blogPostController',
       access: {restricted: false}

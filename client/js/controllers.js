@@ -11,7 +11,7 @@ angular.module('myApp').controller('homeController',
 angular.module('myApp').controller('blogPostController',
   ['$scope', '$http', '$routeParams',
   function ($scope, $http, $routeParams) {
-    $http.get('/api/blog/' + $routeParams.id).success(function(response) {
+    $http.get('/api/blog/' + $routeParams.title).success(function(response) {
       console.log(response);
       $scope.blog = response;
     });
