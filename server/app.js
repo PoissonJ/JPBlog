@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var expressSession = require('express-session');
 var mongoose = require('mongoose');
+mongoose.set('debug', true);
 var hash = require('bcrypt-nodejs');
 var path = require('path');
 var passport = require('passport');

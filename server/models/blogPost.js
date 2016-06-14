@@ -8,6 +8,6 @@ var BlogPost = new Schema({
   date: Date,
   body: String,
   author: String
-});
+}, {collection: 'blogPosts'});
 
 module.exports = mongoose.model('blogPosts', BlogPost);

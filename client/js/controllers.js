@@ -1,3 +1,12 @@
+angular.module('myApp').controller('blogController',
+  ['$scope', '$http',
+  function ($scope, $http) {
+    $http.get('/api/blog').success(function(response) {
+      console.log(response);
+      $scope.blogs = response;
+    });
+  }
+]);
 angular.module('myApp').controller('loginController',
   ['$scope', '$location', 'AuthService',
   function ($scope, $location, AuthService) {

@@ -52,6 +52,14 @@ router.get('/logout', function(req, res) {
   });
 });
 
+router.get('/blog', function(req, res) {
+  console.log('At blog api endpoint');
+  BlogPost.find({}).exec(function(err, docs) {
+    console.log(docs);
+    res.json(docs);
+  });
+});
+
 router.get('/status', function(req, res) {
   if (!req.isAuthenticated()) {
     return res.status(200).json({
@@ -63,7 +71,6 @@ router.get('/status', function(req, res) {
   });
 });
 
-// router.get()
 
 
 module.exports = router;
