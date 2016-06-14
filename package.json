@@ -1,5 +1,5 @@
 {
-  "name": "mean-auth",
+  "name": "Jonathan-Poisson",
   "scripts": {
     "start": "nodemon server/server.js"
   },

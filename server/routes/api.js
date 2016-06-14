@@ -3,6 +3,7 @@ var router = express.Router();
 var passport = require('passport');
 
 var User = require('../models/user.js');
+var BlogPost = require('../models/blogPost.js');
 
 
 router.post('/register', function(req, res) {
@@ -61,6 +62,8 @@ router.get('/status', function(req, res) {
     status: true
   });
 });
+
+// router.get()
 
 
 module.exports = router;
