@@ -4,7 +4,12 @@ myApp.config(function ($routeProvider) {
   $routeProvider
     .when('/', {
       templateUrl: '/partials/home.html',
-      controller: 'blogController',
+      controller: 'homeController',
+      access: {restricted: false}
+    })
+    .when('/post/:id', {
+      templateUrl: '/partials/post.html',
+      controller: 'blogPostController',
       access: {restricted: false}
     })
     .when('/login', {
@@ -21,7 +26,7 @@ myApp.config(function ($routeProvider) {
       controller: 'registerController',
       access: {restricted: false}
     })
-    .when('/one', {
+    .when('/admin', {
       template: '<h1>This is page one!</h1>',
       access: {restricted: true}
     })

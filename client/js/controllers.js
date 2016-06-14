@@ -1,4 +1,4 @@
-angular.module('myApp').controller('blogController',
+angular.module('myApp').controller('homeController',
   ['$scope', '$http',
   function ($scope, $http) {
     $http.get('/api/blog').success(function(response) {
@@ -7,6 +7,17 @@ angular.module('myApp').controller('blogController',
     });
   }
 ]);
+
+angular.module('myApp').controller('blogPostController',
+  ['$scope', '$http', '$routeParams',
+  function ($scope, $http, $routeParams) {
+    $http.get('/api/blog/' + $routeParams.id).success(function(response) {
+      console.log(response);
+      $scope.blog = response;
+    });
+  }
+]);
+
 angular.module('myApp').controller('loginController',
   ['$scope', '$location', 'AuthService',
   function ($scope, $location, AuthService) {

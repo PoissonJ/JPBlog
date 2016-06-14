@@ -54,7 +54,16 @@ router.get('/logout', function(req, res) {
 
 router.get('/blog', function(req, res) {
   console.log('At blog api endpoint');
-  BlogPost.find({}).exec(function(err, docs) {
+  BlogPost.find({}, function(err, docs) {
+    console.log(docs);
+    res.json(docs);
+  });
+});
+
+router.get('/blog/:id', function(req, res) {
+  console.log('At blog find api endpoint');
+  var id = req.params.id;
+  BlogPost.findById(id, function(err, docs) {
     console.log(docs);
     res.json(docs);
   });
