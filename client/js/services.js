@@ -14,7 +14,7 @@ angular.module('myApp').factory('AuthService',
     }
 
     function getUserStatus() {
-      return $http.get('/user/status')
+      return $http.get('/api/status')
       // handle success
       .success(function(data) {
         if (data.status) {
@@ -35,7 +35,7 @@ angular.module('myApp').factory('AuthService',
       var deferred = $q.defer();
 
       // send a post request to the server
-      $http.post('/user/login',
+      $http.post('/api/login',
         {username: username, password: password})
         // handle success
         .success(function (data, status) {
@@ -63,7 +63,7 @@ angular.module('myApp').factory('AuthService',
       var deferred = $q.defer();
 
       // send a get request to the server
-      $http.get('/user/logout')
+      $http.get('/api/logout')
         // handle success
         .success(function(data) {
           user = false;
@@ -85,7 +85,7 @@ angular.module('myApp').factory('AuthService',
       var deferred = $q.defer();
 
       // send a post request to the server
-      $http.post('/user/register',
+      $http.post('/api/register',
         {username: username, password: password})
         // handle success
         .success(function(data, status) {
