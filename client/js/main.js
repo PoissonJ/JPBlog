@@ -27,11 +27,11 @@ myApp.config(function ($routeProvider) {
       access: {restricted: false}
     })
     .when('/admin', {
-      template: '<h1>This is page one!</h1>',
+      templateUrl: 'partials/admin.html',
       access: {restricted: true}
     })
-    .when('/two', {
-      template: '<h1>This is page two!</h1>',
+    .when('/admin/add', {
+      templateUrl: 'partials/adminAdd.html',
       access: {restricted: true}
     })
     .otherwise({

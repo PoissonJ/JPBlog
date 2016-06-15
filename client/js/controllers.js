@@ -32,7 +32,7 @@ angular.module('myApp').controller('loginController',
       AuthService.login($scope.loginForm.username, $scope.loginForm.password)
       // handle success
       .then(function() {
-        $location.path('/');
+        $location.path('/admin');
         $scope.disabled = false;
         $scope.loginForm = {};
       })
