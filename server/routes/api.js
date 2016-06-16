@@ -70,6 +70,36 @@ router.get('/blog/:title', function(req, res) {
   });
 });
 
+router.post('/blog/create', function(req, res) {
+  console.log('At blog post endpoint');
+  console.log(req.body);
+  if (req.body && req.body.title && req.body.author && req.body.body && req.body.preview) {
+    var newBlog = new BlogPost({
+        title: req.body.title,
+        author: req.body.author,
+        body: req.body.body,
+        preview: req.body.preview,
+        date: req.body.date,
+      });
+
+    newBlog.save(function (err) {
+      if (err) return res.status(500).json({created: false});
+    });
+    return res.status(200).json({created: true});
+  } else {
+    return res.status(500).json({created: false});
+  }
+});
+
+router.delete('/blog/delete/:id', function(req, res) {
+  var id = req.params.id;
+  BlogPost.remove({_id: id}, function(err) {
+    if (!err) return res.status(200);
+    else return res.status(500);
+  })
+
+})
+
 router.get('/status', function(req, res) {
   if (!req.isAuthenticated()) {
     return res.status(200).json({

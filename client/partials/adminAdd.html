@@ -1,0 +1,15 @@
+<!-- <script src="./js/tinymceCustom.js" type="text/javascript-lazy"> </script> -->
+<div class="row">
+  <h1 class="text-center">Add Post</h1>
+  <hr>
+  <div class="input-group-lg col-md-6 col-md-offset-3">
+    <input type="text" placeholder="Title" class="form-control center-block" style="font-weight: bold;" ng-model="title">
+    <input type="text" placeholder="Author" class="form-control center-block" ng-model="author">
+    <hr>
+    <input type="text" placeholder="Short summary" class="form-control center-block" ng-model="preview">
+  </div>
+</div>
+<hr>
+<div text-angular ng-model="body"> </div>
+<br>
+<button class="btn btn-primary pull-right" ng-click="createBlog()">Post blog</button>

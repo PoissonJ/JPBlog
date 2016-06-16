@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngRoute']);
+var myApp = angular.module('myApp', ['ngRoute', 'textAngular', 'ngSanitize']);
 
 myApp.config(function ($routeProvider) {
   $routeProvider
@@ -32,6 +32,12 @@ myApp.config(function ($routeProvider) {
     })
     .when('/admin/add', {
       templateUrl: 'partials/adminAdd.html',
+      controller: 'adminAddController',
+      access: {restricted: true}
+    })
+    .when('/admin/delete', {
+      templateUrl: 'partials/adminDelete.html',
+      controller: 'adminDeleteController',
       access: {restricted: true}
     })
     .otherwise({

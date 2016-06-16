@@ -3,8 +3,58 @@ angular.module('myApp').controller('homeController',
   function ($scope, $http) {
     $http.get('/api/blog').success(function(response) {
       console.log(response);
-      $scope.blogs = response;
+      var blogs = response;
+      blogs.forEach(function(blog) {
+        var date = new Date(blog.date);
+
+        var monthNames = [
+          "January", "February", "March",
+          "April", "May", "June", "July",
+          "August", "September", "October",
+          "November", "December"
+        ];
+
+        var day = date.getDate();
+        var monthIndex = date.getMonth();
+        var year = date.getFullYear();
+
+        blog.created_on = blog.date;
+        blog.date = monthNames[monthIndex] + " " + day + ", " + year;
+      });
+
+      $scope.blogs = blogs;
+      $scope.sortBlog = function(blog) {
+        var date = new Date(blog.created_on);
+        return date;
+      }
+
     });
+  }
+]);
+
+angular.module('myApp').controller('adminAddController',
+  ['$scope', '$http', '$location',
+  function($scope, $http, $location) {
+    $scope.createBlog = function() {
+      var title = $scope.title;
+      var author = $scope.author;
+      var body = $scope.body;
+      var preview = $scope.preview;
+      var date = new Date();
+
+      $http.post('api/blog/create',
+      {title: title, author: author, body: body, date: date, preview: preview})
+      .success(function() {
+        $location.path('/');
+        $scope.title   = '';
+        $scope.author  = '';
+        $scope.body    = '';
+        $scope.preview = '';
+      })
+      .error(function() {
+        alert("Error in trying to post. All fields required");
+      });
+    }
   }
 ]);
 
@@ -15,6 +65,30 @@ angular.module('myApp').controller('blogPostController',
       console.log(response);
       $scope.blog = response;
     });
+  }
+]);
+
+angular.module('myApp').controller('adminDeleteController',
+  ['$scope', '$http', '$location',
+  function ($scope, $http, $routeParams, $location) {
+    $http.get('/api/blog').success(function(response) {
+      $scope.blogs = response;
+    });
+
+    $scope.deletePost = function(blog) {
+      var ask = confirm("Delete " + blog.title + "?");
+      if (ask) {
+        $http.delete('/api/blog/delete/' + blog._id);
+        $http.get('/api/blog').success(function(response) {
+          $scope.blogs = response;
+        });
+      };
+    };
+
+    $scope.sortBlog = function(blog) {
+      var date = new Date(blog.date);
+      return date;
+    };
   }
 ]);
 
