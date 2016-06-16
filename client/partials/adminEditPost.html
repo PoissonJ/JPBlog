@@ -1,0 +1,15 @@
+<div class="row">
+  <h1 class="text-center">Edit Post</h1>
+  <hr>
+  <div class="input-group-lg col-md-6 col-md-offset-3">
+    <input type="text" placeholder="Title" class="form-control center-block" style="font-weight: bold;" ng-model="blog.title">
+    <input type="text" placeholder="Author" class="form-control center-block" ng-model="blog.author">
+    <hr>
+    <input type="text" placeholder="Short summary" class="form-control center-block" ng-model="blog.preview">
+  </div>
+</div>
+<hr>
+<div text-angular ng-model="blog.body"> </div>
+<br>
+<button class="btn btn-warning pull-right" ng-click="editBlog()">Edit blog</button>
+<a ng-href="#/admin/edit/"><button class="btn btn-primary pull-left"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>

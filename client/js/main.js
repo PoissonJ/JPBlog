@@ -40,6 +40,16 @@ myApp.config(function ($routeProvider) {
       controller: 'adminDeleteController',
       access: {restricted: true}
     })
+    .when('/admin/edit', {
+      templateUrl: 'partials/adminEdit.html',
+      controller: 'adminEditController',
+      access: {restricted: true}
+    })
+    .when('/admin/edit/:title', {
+      templateUrl: 'partials/adminEditPost.html',
+      controller: 'adminEditPostController',
+      access: {restricted: true}
+    })
     .otherwise({
       redirectTo: '/'
     })

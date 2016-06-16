@@ -70,7 +70,7 @@ angular.module('myApp').controller('blogPostController',
 
 angular.module('myApp').controller('adminDeleteController',
   ['$scope', '$http', '$location',
-  function ($scope, $http, $routeParams, $location) {
+  function ($scope, $http, $location) {
     $http.get('/api/blog').success(function(response) {
       $scope.blogs = response;
     });
@@ -88,6 +88,38 @@ angular.module('myApp').controller('adminDeleteController',
     $scope.sortBlog = function(blog) {
       var date = new Date(blog.date);
       return date;
+    };
+  }
+]);
+
+angular.module('myApp').controller('adminEditController',
+  ['$scope', '$http', '$location',
+  function($scope, $http, $location) {
+    $http.get('/api/blog').success(function(response) {
+      $scope.blogs = response;
+    });
+    $scope.editPost = function(blog) {
+      $location.path('/admin/edit/' + blog.title);
+    };
+  }
+]);
+
+angular.module('myApp').controller('adminEditPostController',
+  ['$scope', '$http', '$location', '$routeParams',
+  function($scope, $http, $location, $routeParams) {
+    $http.get('/api/blog/' + $routeParams.title).success(function(response) {
+      $scope.blog = response;
+    });
+
+    $scope.editBlog = function() {
+      alert("Updated");
+      $http.put('/api/blog/update',{
+        id: $scope.blog._id,
+        title: $scope.blog.title,
+        author: $scope.blog.author,
+        preview: $scope.blog.preview,
+        body: $scope.blog.body
+      });
     };
   }
 ]);

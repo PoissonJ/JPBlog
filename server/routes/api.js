@@ -96,9 +96,31 @@ router.delete('/blog/delete/:id', function(req, res) {
   BlogPost.remove({_id: id}, function(err) {
     if (!err) return res.status(200);
     else return res.status(500);
-  })
+  });
+});
 
-})
+router.put('/blog/update', function(req, res) {
+  var id      = req.body.id;
+  var title   = req.body.title;
+  var author  = req.body.author;
+  var body    = req.body.body;
+  var preview = req.body.preview;
+
+  BlogPost.findOne({_id: id}, function(err, doc) {
+    if (err) return res.status(500).json({success: "Failed to Update"});
+    else {
+      doc.title   = title;
+      doc.author  = author;
+      doc.body    = body;
+      doc.preview = preview;
+      doc.save();
+
+      return res.status(200).json({
+        success: "Updated"
+      });
+    }
+  });
+});
 
 router.get('/status', function(req, res) {
   if (!req.isAuthenticated()) {
