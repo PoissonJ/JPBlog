@@ -12,7 +12,7 @@ var passport = require('passport');
 var localStrategy = require('passport-local' ).Strategy;
 
 // mongoose
-mongoose.connect('mongodb://localhost/mean-auth');
+mongoose.connect('mongodb://localhost/JPBlog');
 
 // user schema/model
 var User = require('./models/user.js');
