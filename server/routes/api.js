@@ -7,18 +7,35 @@ var BlogPost = require('../models/blogPost.js');
 
 
 router.post('/register', function(req, res) {
-  User.register(new User({ username: req.body.username }),
-    req.body.password, function(err, account) {
-    if (err) {
+  // Do not register users if there is already one!
+  var allowed = false;
+  User.count({}, function(err, count) {
+    if (count >= 1) {
+    console.log("Looking at count which is " + count);
       return res.status(500).json({
-        err: err
+        status: "Not accepting new user"
+      });
+      allowed = false;
+    } else {
+      allowed = true;
+    }
+  }).then(function() {
+    if (allowed) {
+      console.log("Still going");
+      User.register(new User({ username: req.body.username }),
+        req.body.password, function(err, account) {
+        if (err) {
+          return res.status(500).json({
+            err: err
+          });
+        }
+        passport.authenticate('local')(req, res, function () {
+          return res.status(200).json({
+            status: 'Registration successful!'
+          });
+        });
       });
     }
-    passport.authenticate('local')(req, res, function () {
-      return res.status(200).json({
-        status: 'Registration successful!'
-      });
-    });
   });
 });
 
@@ -73,6 +90,12 @@ router.get('/blog/:title', function(req, res) {
 router.post('/blog/create', function(req, res) {
   console.log('At blog post endpoint');
   console.log(req.body);
+  if (!req.isAuthenticated()) {
+    console.log("Not authenticated");
+    return res.status(200).json({
+      status: false
+    });
+  }
   if (req.body && req.body.title && req.body.author && req.body.body && req.body.preview) {
     var newBlog = new BlogPost({
         title: req.body.title,

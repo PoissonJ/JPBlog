@@ -1,7 +1,11 @@
 {
   "name": "Jonathan-Poisson",
   "scripts": {
-    "start": "nodemon server/server.js"
+    "start": "node server/server.js",
+    "nodemon": "nodemon server/server.js"
+  },
+  "engines": {
+    "node": "4.2.6"
   },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
