@@ -1,8 +1,7 @@
 {
   "name": "Jonathan-Poisson",
   "scripts": {
-    "start": "node server/server.js",
-    "nodemon": "nodemon server/server.js"
+    "start": "nodemon server/server.js"
   },
   "engines": {
     "node": "4.2.6"

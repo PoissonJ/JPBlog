@@ -11,6 +11,10 @@ myApp.config(function ($routeProvider) {
       templateUrl: '/partials/about.html',
       access: {restricted: false}
     })
+    .when('/contact', {
+      templateUrl: '/partials/contact.html',
+      access: {restricted: false}
+    })
     .when('/post/:title', {
       templateUrl: '/partials/post.html',
       controller: 'blogPostController',
