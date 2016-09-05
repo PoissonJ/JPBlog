@@ -91,3 +91,7 @@ blockquote:before {
 blockquote p {
   display: inline;
 }
+
+.courses ul {
+  list-style: none;
+}
