@@ -15,8 +15,22 @@
 }
 
 @media (max-width: 768px) {
+  .florida {
+    margin-bottom: -100px;
+  }
   .alumni {
     margin-top: 40px;
+  }
+}
+@media (max-width: 500px) {
+  .florida {
+    margin-bottom: -150px;
+  }
+}
+
+@media (max-width: 350px) {
+  .florida {
+    margin-bottom: -200px;
   }
 }
 
