@@ -109,3 +109,11 @@ blockquote p {
 .courses ul {
   list-style: none;
 }
+
+@media (max-width: 500px) {
+  .courses ul {
+    text-align: left;
+    list-style: circle;
+    margin-bottom: 5px;
+  }
+}
